@@ -46,7 +46,7 @@
 \affiliation{\sup{2}LIUPPA, Universit\'e de Pau et des Pays de l'Adour, France}
 \email{\{ahmad,dragomir,bruel,iulian.ober\}@irit.fr, belloir@univ-pau.fr}
 }}
-\keywords{Requirements, Formal Verification, Observers, \sysml{}/\kaos{}, \myrelax{}, Goals}
+\keywords{Requirements, Formal Verification, Observers, \myrelax{}}
 
 
 \abstract{Formal methods provide tools to verify the consistency and correctness of a specification with respect to the desired properties of the system. This verification is important as the development of an AAL (Ambient Assisted Living) system involves different technologies (medical services, surveillance cameras, intelligent devices, etc.) requiring a strong consistency checking between models. We illustrate in this paper how we prove some of the properties of the system before the development even starts. To model the AAL system, we use the \sysml{} language. In terms of tools, we used Rational Rhapsody in combination with the OMEGA2 profile which is an executable \uml{}/\sysml{} profile used for the formal specification and validation of critical real-time systems. This profile is supported by the IFx toolset which provides mechanisms for the model simulation and properties verification of the AAL system.
@@ -61,15 +61,15 @@
 
 \noindent Formal methods are intended to systemize and introduce rigor into all the phases of software development. This helps us to avoid overlooking critical issues, provides a standard means to record various assumptions and decisions, and forms a basis for consistency among related activities. By providing precise and unambiguous description mechanisms, formal methods facilitate the understanding required to coalesce the various phases of software development into a successful endeavor \cite{test1}. 
 
-In this paper we asses the use of formal methods for the modelling and verification of Ambient Assisted Living (AAL) systems. We use the OMEGA-IFx approach which has been applied for the verification and validation of industry-grade models \cite{test2}  providing interesting results. The OMEGA \UML{}/\SysML{} Profile \cite{test3} defines the semantics of \UML{}/\SysML{} elements providing the means to model coherent and unambiguous system models. In order to make the models verifiable, it presents as extension the \textit{observer} mechanism for specifying dynamic properties of models. The OMEGA \UML{}/\SysML{} Profile is implemented by the IFx Toolbox \cite{test4} which provides static analysis, simulation and timed-automata based model checking \cite{test5} techniques for validation.
+In this paper we asses the use of formal methods for the modeling and verification of Dynamic Adaptive Systems (DAS). As a particular domain of application, we are dealing with a particular kind of Ambient System: Ambient Assisted Living (AAL) systems. We use the OMEGA-IFx approach which has been applied for the verification and validation of industry-grade models \cite{test2}  providing interesting results. The OMEGA \UML{}/\SysML{} Profile \cite{test3} defines the semantics of \UML{}/\SysML{} elements providing the means to model coherent and unambiguous system models. In order to make the models verifiable, it includes as extension the \textit{observer} mechanism for specifying dynamic properties of models. The OMEGA \UML{}/\SysML{} Profile is implemented by the IFx Toolbox \cite{test4} which provides static analysis, simulation and timed-automata based model checking \cite{test5} techniques for validation.
 
-Ambient Systems are highly adaptive. They modify their behavior at run-time in response to changing environmental conditions. For these systems, Non Functional Requirements (NFR’s) play an important role, and one has to identify as early as possible the requirements that are adaptable. The distributed nature of Dynamic Adaptive Systems and changing environmental factors makes it difficult to anticipate all the explicit states in which the system will be during its lifetime. As such a DAS needs to be able to tolerate a range of environmental conditions and contexts, but the exact nature of these contexts remains imperfectly understood. For the system properties of our AAL case study, we use two types of properties: \myrelax{}-ed and Invariant. These requirements are obtained by applying a process called  \myrelax{} \cite{test6} on traditional requirements. \myrelax{}  is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems.
+Ambient Systems are highly adaptive. They modify their behavior at run-time in response to changing environmental conditions. For these systems, Non Functional Requirements (NFR’s) play an important role, and one has to identify as early as possible the requirements that are adaptable. The distributed nature of Dynamic Adaptive Systems and changing environmental factors makes it difficult to anticipate all the explicit states in which the system will be during its lifetime. As such a DAS needs to be able to tolerate a range of environmental conditions and contexts, but the exact nature of these contexts remains imperfectly understood. For the system properties of our AAL case study, we use both types of properties: \myrelax{}-ed and Invariant. These requirements are obtained by applying a process called  \myrelax{} \cite{test6} on traditional requirements. \myrelax{} is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems.
 
-In our previous work \cite{test7}, we have find a link between \myrelax{} and \sysml{}/\kaos{} \cite{test8} which is a goal oriented approach, based on \kaos{}, which extends the \sysml{} meta-model with goal concepts. In our view, these two approaches are complementary for each other and \myrelax{} can benefit from the ContributionNature and ContributionType concepts of \sysml{}/\kaos{}.  This paper enriches our work in integrating the formal aspects.
+In our previous work \cite{test7}, we have found a link between \myrelax{} and \sysml{}/\kaos{} \cite{test8} which is a goal oriented approach, based on \kaos{}, which extends the \sysml{} meta-model with goal concepts. In our view, these two approaches are complementary for each other and \myrelax{} can benefit from the concepts of \sysml{}/\kaos{}.  This paper enriches our work in integrating the formal aspects.
 
 %Typical  textual  requirements  prescribe behavior  using  a  modal  verb  such  as  SHALL  that defines  functionality  that  a  software  system  must always provide. For self adaptive systems however, environmental  uncertainty  may  mean  that  it  is  not always  possible  to  achieve  all  of  those  SHALL statements; or behavioral uncertainty may allow for trade-offs between SHALL statements to \myrelax{} non-critical  statements  in  favor  of  other,  more  critical ones.  Therefore  \myrelax{}  identifies  two  types  of requirements:  one  that  can  be  \myrelax{}ed  in  favor  of other ones called variant or \myrelax{}-ed and other that should never change called invariant.
 
-\paragraph*{Paper structure.} This paper is organized as follows: Section~\ref{sec:r_work} presents other approaches defined for the verification of AAL models, Section~\ref{sec:tools} introduces the OMEGA \UML{}/\SysML{} Profile and the IFx Toolbox that are used for modelling and properties verification, Section~\ref{sec:aal_model} describes the case study: its specification, system architecture and behavior, Section~\ref{sec:properties} presents the properties, the AAL system has to satisfy, while Section~\ref{sec:results} contains the verification and simulation results, Section~\ref{sec:conclusion} concludes the paper and highlights the future work.
+\paragraph*{Paper structure.} This paper is organized as follows: Section~\ref{sec:r_work} presents other approaches defined for the verification of AAL models, Section~\ref{sec:tools} introduces the OMEGA \UML{}/\SysML{} Profile and the IFx Toolbox that are used for modeling and properties verification, Section~\ref{sec:aal_model} describes the case study: its specification, system architecture and behavior, Section~\ref{sec:properties} presents the properties, the AAL system has to satisfy, while Section~\ref{sec:results} contains the verification and simulation results, Section~\ref{sec:conclusion} concludes the paper and highlights the future work.
 
 \section{Related work}
 \label{sec:r_work}
@@ -97,15 +97,15 @@ on the exploration of the whole system state space in order to prove absence of 
 
 \subsection{The OMEGA UML/SysML Profile}
 
-OMEGA is an executable \uml{}/\sysml{} profile dedicated to the formal specification and validation of critical real-time systems. It is based on a subset of \uml{} 2.2/\sysml{} 1.1 containing the main constructs for modelling system structure and class/block behavior and for which provides a clear and coherent operational and timed semantics.
+OMEGA is an executable \uml{}/\sysml{} profile dedicated to the formal specification and validation of critical real-time systems. It is based on a subset of \uml{} 2.2/\sysml{} 1.1 containing the main constructs for modeling system structure and class/block behavior and for which it provides a clear and coherent operational and timed semantics.
 
 %\subsubsection{System structure}
 
-The architecture of an OMEGA model is described in Class/Block Definition Diagrams by classes/blocks with their relationships (association, generalization and composition) and their interfaces. Each class/block define properties and operations, as well as a state machine. the hierarchical structure of a model is defined in composite structures/Internal Block Diagrams: parts that communicate through ports and connectors. The \uml{}/\sysml{} Profile leave open several semantic variation points for which OMEGA defines a set of well-formedness rules that result in a strong typing language. For further details on the rules, their rationale and formalization, the reader is referred to \cite{test11}.
+The architecture of an OMEGA model is described in Class/Block Definition Diagrams by classes/blocks with their relationships (association, generalization and composition) and their interfaces. Each class/block defines properties and operations, as well as a state machine. The hierarchical structure of a model is defined in composite structures/Internal Block Diagrams: parts that communicate through ports and connectors. The \uml{}/\sysml{} Profile leaves open several semantic variation points for which OMEGA defines a set of well-formedness rules that result in a strong typing language. For further details on the rules, their rationale and formalization, the reader is referred to \cite{test11}.
 
 %\subsubsection{Class/Block behavior}
 
-The behavior of a system is given by the modelled state machines that use asynchronous operation calls and signal outputs for communication. The profile owns a textual action language compatible with \uml{} 2.2 action metamodel from which implements the main constructs: object creation/destruction, expression evaluation, variable assignment, signal output and control flow structuring statements.
+The behavior of a system is given by the modeled state machines that use asynchronous operation calls and signal outputs for communication. The profile owns a textual action language compatible with \uml{} 2.2 action metamodel from which implements the main constructs: object creation/destruction, expression evaluation, variable assignment, signal output and control flow structuring statements.
 
 %\subsubsection{Operational and timed semantics of OMEGA}
 
@@ -115,13 +115,13 @@ The OMEGA Profile can model timed behavior, where the model time base can either
 
 %\subsubsection{Observers}
 
-For specifying and verifying dynamic properties of models, OMEGA uses the notion of \textit{observers}. \textit{Observers} are special classes/blocks monitoring run-time state and events. They are defined by classes/blocks stereotyped with \texttt{<<observer>>}. They may have local memory (attributes) and a state machine describes their behavior. States are classified as \texttt{<<success>>} and \texttt{<<error>>} states to express the (non)satisfaction of safety properties. The main issue in modelling observers is the choice of events which trigger their transitions, and which must include specific \uml{}/\sysml{} event types. One can observe:
+For specifying and verifying dynamic properties of models, OMEGA uses the notion of \textit{observers}. \textit{Observers} are special classes/blocks monitoring run-time state and events. They are defined by classes/blocks stereotyped with \texttt{<<observer>>}. They may have local memory (attributes) and a state machine describes their behavior. States are classified as \texttt{<<success>>} and \texttt{<<error>>} states to express the (non)satisfaction of safety properties. The main issue in modeling observers is the choice of events which trigger their transitions, and which must include specific \uml{}/\sysml{} event types. One can observe:
 
 \begin{itemize}
 \item Events related to signal exchange: \texttt{send}, \texttt{receivesignal}, \texttt{acceptsignal}.
 \item Events related to operation calls: \texttt{invoke}, \texttt{receive} (reception of call), \texttt{accept} (start of actual processing of call -- may be different from \texttt{receive}), \texttt{invokereturn} (sending of a 
 return 	value), \texttt{receivereturn} (reception of the return value), \texttt{acceptreturn} (actual consumption of the return value).
-\item Informal events explicitly specified by the modeller using the informal action.
+\item Informal events explicitly specified by the modeler using the informal action.
 \end{itemize}
 The trigger of an observer transition is a \texttt{match} clause specifying the type of event (e.g., \texttt{receive}), some related information (e.g., the operation name) and observer variables that may receive related information (e.g., variables receiving the values of operation call parameters). Besides events, an observer may access any part of the state of the \uml{} model: object attributes and state, signal queues. 
 
@@ -155,13 +155,13 @@ The compiler verifies the set of well-formedness rules imposed by the profile an
 \label{sec:aal_model}
 In this section, we explore the AAL system specification, the system architecture showing its structural and behavioral diagrams i.e. its block definition diagram, internal block diagrams and state machine diagrams.
 
-\subsection{System Specification}
+%\subsection{System Specification}
 First, we start by taking into account the structural part of the AAL system. We consider those parts that are concerned with the daily calories intake of the Patient in the AAL house. The AAL system is composed of Fridge and Patient. We would like to model these parts and the interaction that takes place between them. The Fridge partially contributes to the minimum liquid intake of the Patient; it also looks at the calories consumption of the Patient as the Patient needs not to exceed it after a certain threshold. 
 
-\subsection{System Architecture}
+%\subsection{System Architecture}
 Fig.~\ref{fig:mainibd} shows the Main internal block diagram. The important parts of the AAL system are Patient and Fridge. A Fridge in turn is composed of Food, Display, Alarm and Controller blocks. The block Food contains information about the food items in the Fridge, the calories contained by each item, the total number of calories the patient has accumulated and the calories threshold that should not be surpassed. The Fridge Display is used to show the amount of calories consumed by the Patient. The Alarm is activated in case the Patient's calories level surpasses a certain threshold. The Controller transfer the information from the Patient to the concerning elements and back to the environment. The communication between different blocks takes place through ports. A  port  bears  a  type.  In  OMEGA2,  the  type  of  a  port  must  be  an  Interface. The type specifies the set of requests (operation calls and/or signals) that  are transferred between parts (components) by means of ports and connectors. In Fig.~\ref{fig:mainibd}, the Patient block has a standard port named pToFridge. This port has a contract named Patient2Fridge and is acting as a provided interface of the Patient block. The Interface Patient2Fridge defines an operation \textit{eat(int item, int quantity)}. This interface is then used as a type of pToFridge port. At the same time the Patient block has a required interface named pFromPatient. The full system architecture of the AAL system can be found in \cite{test15}. 
 
-Rational Rhapsody Developer v7.5.2. \cite{test16} is used to create OMEGA2 models. OMEGA2 models use a profile and a predefined library provided with the tool (OMEGA2.sbs and OMEGA2Predefined.sbs). Any other \uml{}2.2 or \sysml{}1.1 editor supporting profiling and exporting in the XMI2.0 standard compatible with Eclipse ecore can be used for OMEGA models.
+Rational Rhapsody Developer \cite{test16} is used to create OMEGA2 models. OMEGA2 models use a profile and a predefined library provided with the tool. Any other \uml{}2.2 or \sysml{}1.1 editor supporting profiling and exporting in the XMI2.0 standard compatible with Eclipse ecore can be used for OMEGA models.
 
 \begin{figure}[!h]
   \centering
@@ -170,7 +170,7 @@ Rational Rhapsody Developer v7.5.2. \cite{test16} is used to create OMEGA2 model
   \label{fig:mainibd}
  \end{figure}
  
-The important part of the AAL system is the intelligent Fridge. The Fridge interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the internal block diagram for the Fridge block. Each of the four blocks behaviors is modeled in a separate state machine diagram.
+The Fridge interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the internal block diagram for the Fridge block. Each of the four blocks behaviors is modeled in a separate state machine diagram.
 
 \begin{figure}[!h]
   \centering
@@ -188,7 +188,7 @@ Fig.~\ref{fig:patientstm} shows the state machine diagram for the Patient block.
   \label{fig:patientstm}
  \end{figure}
  
-The Food block models the knowledge of the Fridge about what it contains. Here we define the number of items and the amount of calories associated with each item present in the Fridge. We then calculate the total number of calories accumulated by the Patient. If the total number of calories is greater or equal to the maximum calories allowed for the Patient, then a message is send and the alarm is raised or if the total number of calories is greater than the maximum calories allowed minus 500, then the Patient is warned with a message that the calories level is approaching the maximum amount of calories allowed. Fig.~\ref{fig:foodstm} shows the state machine diagram for the Food block.
+The Food block models the knowledge of the Fridge about what it contains. Here we define the number of items and the amount of calories associated with each item present in the Fridge. We then calculate the total number of calories accumulated by the Patient. If the total number of calories is greater or equal to the maximum calories allowed for the Patient, then a message is sent and the alarm is raised or if the total number of calories is greater than the maximum calories allowed minus 500, then the Patient is warned with a message that the calories level is approaching the maximum amount of calories allowed. Fig.~\ref{fig:foodstm} shows the state machine diagram for the Food block.
 
 \begin{figure}[!h]
   \centering
@@ -200,7 +200,7 @@ The Food block models the knowledge of the Fridge about what it contains. Here w
 \section{\uppercase{Properties Verification of AAL system}}
 \label{sec:properties}
 The properties of AAL system that we modeled and verified are obtained after \myrelax{} process is applied on its traditional requirements. \myrelax{}  is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems. Typical  textual  requirements  prescribe behavior  using  a  modal  verb  such  as  SHALL  that defines  functionality  that  a  software  system  must always provide. For self adaptive systems such as AAL however, environmental  uncertainty  may  mean  that  it  is  not always  possible  to  achieve  all  of  those  SHALL statements; or behavioral uncertainty may allow for trade-offs between SHALL statements to \myrelax{} non-critical  statements  in  favor  of  other,  more  critical ones.  Therefore  \myrelax{}  identifies  two  types  of requirements:  one  that  can  be  \myrelax{}-ed  in  favor  of other ones called variant or \myrelax{}-ed and other that should never change called invariant.
-Below are the properties to be verified: 
+Below are the properties to be verified. 
 
 \subsection{Traditional/\myrelax{}-ed Requirement}
 
