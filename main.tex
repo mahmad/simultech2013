@@ -139,16 +139,14 @@ The IFx toolset relies on a translation of \uml{}/\sysml{} models towards a simp
 %it has been designed to work in conjunction with IBM Rhapsody \footnote{\url{http://www.ibm.com/developerworks/rational/}} (version 7.4 or later) but functions correctly with other XMI-compliant tools. 
 The compiler verifies the set of well-formedness rules imposed by the profile and generates an IF model that can be further reduced by static analysis techniques. This model is subject to verification that either validates the model with respect to its properties or produces a list of error scenarios that can be further debugged using the simulator. The overall workflow  of IFx Toolset is shown in Fig.~\ref{fig:flow} \cite{test14}.
 
-
-\begin{figure}[!h]
+\begin{figure}[!htb]
 %\begin{figure*}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =Workflow, width = 7cm}}
+  {\epsfig{file =Workflow, width = 8cm}}
   \caption{IFx Workflow}
   \label{fig:flow}
 %\end{figure*}
- \end{figure}
+\end{figure}
  
 
 %\vfill
@@ -166,9 +164,8 @@ Fig.~\ref{fig:mainibd} shows the Main internal block diagram. The important part
 Rational Rhapsody Developer v7.5.2. \cite{test16} is used to create OMEGA2 models. OMEGA2 models use a profile and a predefined library provided with the tool (OMEGA2.sbs and OMEGA2Predefined.sbs). Any other \uml{}2.2 or \sysml{}1.1 editor supporting profiling and exporting in the XMI2.0 standard compatible with Eclipse ecore can be used for OMEGA models.
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =MainIBD, width = 6cm}}
+  {\epsfig{file =MainIBD, width = 8cm}}
   \caption{Main Internal Block Diagram}
   \label{fig:mainibd}
  \end{figure}
@@ -176,9 +173,8 @@ Rational Rhapsody Developer v7.5.2. \cite{test16} is used to create OMEGA2 model
 The important part of the AAL system is the intelligent Fridge. The Fridge interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the internal block diagram for the Fridge block. Each of the four blocks behaviors is modeled in a separate state machine diagram.
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =FridgeIBD, width = 6cm}}
+  {\epsfig{file =FridgeIBD, width = 8cm}}
   \caption{Fridge Internal Block Diagram}
   \label{fig:fridgeibd}
  \end{figure}
@@ -186,9 +182,8 @@ The important part of the AAL system is the intelligent Fridge. The Fridge inter
 Fig.~\ref{fig:patientstm} shows the state machine diagram for the Patient block. Here the exchange of information between Patient and Fridge takes place. We identify the number and quantity of each item present in the Fridge. If a certain product still present in the Fridge is chosen by the Patient then the information is  communicated with the Fridge.  Otherwise the Fridge is empty and the Patient will wait to be refilled. Also, if the Alarm of the Fridge is raised due to  high intake of calories, the Patient stops eating and waits for the system to be unblocked.
  
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =PatientSTM, width = 6cm}}
+  {\epsfig{file =PatientSTM, width = 8cm}}
   \caption{Patient State Machine Diagram}
   \label{fig:patientstm}
  \end{figure}
@@ -196,9 +191,8 @@ Fig.~\ref{fig:patientstm} shows the state machine diagram for the Patient block.
 The Food block models the knowledge of the Fridge about what it contains. Here we define the number of items and the amount of calories associated with each item present in the Fridge. We then calculate the total number of calories accumulated by the Patient. If the total number of calories is greater or equal to the maximum calories allowed for the Patient, then a message is send and the alarm is raised or if the total number of calories is greater than the maximum calories allowed minus 500, then the Patient is warned with a message that the calories level is approaching the maximum amount of calories allowed. Fig.~\ref{fig:foodstm} shows the state machine diagram for the Food block.
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =FoodSTM, width = 6cm}}
+  {\epsfig{file =FoodSTM, width = 8cm}}
   \caption{Food State Machine Diagram}
   \label{fig:foodstm}
  \end{figure}
@@ -229,7 +223,6 @@ Below are the uncertainty factors associated with the given \myrelax{}-ed requir
 \end{description}
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
   {\epsfig{file =Property1STM, width = 7cm}}
   \caption{Property1 State Machine Diagram}
@@ -245,9 +238,8 @@ The satisfaction of this requirement contributes to the balanced diet of the Pat
 \end{itemize}
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =Property3STM, width = 7cm}}
+  {\epsfig{file =Property3STM, width = 8cm}}
   \caption{Property2 State Machine Diagram}
   \label{fig:property3stm}
  \end{figure}
@@ -261,17 +253,15 @@ This property ensures that the Patient should stop eating when the total number 
 Until now, we have modeled the AAL system and the properties to be verified on the model. It is now time to verify these properties and in case if there is error during its verification, simulate it to find the error and then correct it in the model. Fig.~\ref{fig:xmi2if} shows the snapshot of the compilation of the AAL model named AAL2. The AAL2 model is first exported into AAL2.xmi and then using the IFx toolset the AAL2.xmi is compiled into AAL2.if.
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =Xmi2If, width = 6cm}}
+  {\epsfig{file =Xmi2If, width = 8cm}}
   \caption{XMI to IF Compilation}
   \label{fig:xmi2if}
  \end{figure}
   
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =If2Exe, width = 6cm}}
+  {\epsfig{file =If2Exe, width = 8cm}}
   \caption{IF to Executable file Compilation}
   \label{fig:if2exe}
  \end{figure}
@@ -284,9 +274,8 @@ AAL2.x -dfs -po -me -ce –ln
 While verifying the AAL model, the model-checker has found several error scenarios, as can be seen in Fig.~\ref{fig:errorstate}.  Any of the error scenario can then be loaded through the interactive simulation interface of the IFx toolset to trace back the error in the model and then correct it. 
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =ErrorState, width = 6cm}}
+  {\epsfig{file =ErrorState, width = 8cm}}
   \caption{Model Checker results in Error Scenarios}
   \label{fig:errorstate}
  \end{figure}
@@ -294,9 +283,8 @@ While verifying the AAL model, the model-checker has found several error scenari
 In order to  debug  a model, firstly we import it into the simulator as shown in Fig.~\ref{fig:initialsimulationinterface} .
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =InitialSimulationInterface, width = 7cm}}
+  {\epsfig{file =InitialSimulationInterface, width = 8cm}}
   \caption{Initial Simulation Interface}
   \label{fig:initialsimulationinterface}
  \end{figure}
@@ -304,17 +292,15 @@ In order to  debug  a model, firstly we import it into the simulator as shown in
 We check the states of the \textit{observers} in order to identify which property has not been satisfied. One can observe in Fig.~\ref{fig:errorstatefoodobserver} that Property 2 fails. While checking the state of the entire system for this property, we discover that the error state contained the maximal allowed number of calories for the total number of calories consumed and subsequently eat requests sent by the Patient. This implies that the Alarm function of the intelligent Fridge doesn't function properly. The Alarm function of the Fridge is strictly relied to its Food process. One can observe in the state machine of the Food block (Fig.~\ref{fig:foodstm}) that the Alarm is raised only if the total number of consumed calories is strictly superior than the maximum allowed; condition which doesn't satisfy the request that the Alarm is raised as soon as possible. The correction consists in raising the Alarm in case the total number of consumed calories is equal to the maximum allowed threshold. Once this error is corrected the verification succeeds.
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =ErrorStateFoodObserver, width = 6cm}}
+  {\epsfig{file =ErrorStateFoodObserver, width = 8cm}}
   \caption{Error State Food Observer Simulation Interface}
   \label{fig:errorstatefoodobserver}
  \end{figure}
 
 \begin{figure}[!h]
-  \vspace{8cm}~
   \centering
-  {\epsfig{file =VerificationOk, width = 7cm}}
+  {\epsfig{file =VerificationOk, width = 8cm}}
   \caption{Model checking successful}
   \label{fig:verificationok}
  \end{figure} 
