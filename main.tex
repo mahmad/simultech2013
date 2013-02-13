@@ -28,18 +28,25 @@
 
 \def\myrelax{\textsc{Relax}}                  % TradeMarks
 \def\sysml{\textsc{SysML}}
-\def\uml{\textsc{UML}}
+\def\UML{\textsc{Uml}}
+\def\SysML{\textsc{SysML}}
+\def\uml{\textsc{Uml}}
 \def\kaos{\textsc{Kaos}}
 
+%================================================================
+% remove for draft/final version
+\newcommand{\final}[1]{\textbf{xxx removed for blind review purpose xxx}}
+%\newcommand{\final}[1]{#1}
+%================================================================
 
 \begin{document}
-\title{Early Analysis of Ambient Systems \sysml{} Properties using OMEGA2-IFx}
-\author{\authorname{Manzoor Ahmad\sup{1}, Iulia Dragomir\sup{1}, Jean-Michel Bruel\sup{1}, Iulian Ober\sup{1} and Nicolas Belloir\sup{2}}
+\title{Early Analysis of Ambient Systems \\ \sysml{} Properties using OMEGA2-IFx}
+\author{\final{\authorname{Manzoor Ahmad\sup{1}, Iulia Dragomir\sup{1}, Jean-Michel Bruel\sup{1}, Iulian Ober\sup{1} and Nicolas Belloir\sup{2}}
 \affiliation{\sup{1}IRIT, Universit\'e de Toulouse, France}
 \affiliation{\sup{2}LIUPPA, Universit\'e de Pau et des Pays de l'Adour, France}
 \email{\{ahmad,dragomir,bruel,iulian.ober\}@irit.fr, belloir@univ-pau.fr}
-}
-\keywords{Requirements, Formal Verification, Observers, \sysml{}/\kaos{}, RELAX, Goals}
+}}
+\keywords{Requirements, Formal Verification, Observers, \sysml{}/\kaos{}, \myrelax{}, Goals}
 
 
 \abstract{Formal methods provide tools to verify the consistency and correctness of a specification with respect to the desired properties of the system. This verification is important as the development of an AAL (Ambient Assisted Living) system involves different technologies (medical services, surveillance cameras, intelligent devices, etc.) requiring a strong consistency checking between models. We illustrate in this paper how we prove some of the properties of the system before the development even starts. To model the AAL system, we use the \sysml{} language. In terms of tools, we used Rational Rhapsody in combination with the OMEGA2 profile which is an executable \uml{}/\sysml{} profile used for the formal specification and validation of critical real-time systems. This profile is supported by the IFx toolset which provides mechanisms for the model simulation and properties verification of the AAL system.
@@ -54,20 +61,20 @@
 
 \noindent Formal methods are intended to systemize and introduce rigor into all the phases of software development. This helps us to avoid overlooking critical issues, provides a standard means to record various assumptions and decisions, and forms a basis for consistency among related activities. By providing precise and unambiguous description mechanisms, formal methods facilitate the understanding required to coalesce the various phases of software development into a successful endeavor \cite{test1}. 
 
-In this paper we asses the use of formal methods for the modelling and verification of Ambient Assisted Living (AAL) systems. We use the OMEGA-IFx approach which has been applied for the verification and validation of industry-grade models \cite{test2}  providing interesting results. The OMEGA UML/SysML Profile \cite{test3} defines the semantics of UML/SysML elements providing the means to model coherent and unambiguous system models. In order to make the models verifiable, it presents as extension the \textit{observer} mechanism for specifying dynamic properties of models. The OMEGA UML/SysML Profile is implemented by the IFx Toolbox \cite{test4} which provides static analysis, simulation and timed-automata based model checking \cite{test5} techniques for validation.
+In this paper we asses the use of formal methods for the modelling and verification of Ambient Assisted Living (AAL) systems. We use the OMEGA-IFx approach which has been applied for the verification and validation of industry-grade models \cite{test2}  providing interesting results. The OMEGA \UML{}/\SysML{} Profile \cite{test3} defines the semantics of \UML{}/\SysML{} elements providing the means to model coherent and unambiguous system models. In order to make the models verifiable, it presents as extension the \textit{observer} mechanism for specifying dynamic properties of models. The OMEGA \UML{}/\SysML{} Profile is implemented by the IFx Toolbox \cite{test4} which provides static analysis, simulation and timed-automata based model checking \cite{test5} techniques for validation.
 
 Ambient Systems are highly adaptive. They modify their behavior at run-time in response to changing environmental conditions. For these systems, Non Functional Requirements (NFR’s) play an important role, and one has to identify as early as possible the requirements that are adaptable. The distributed nature of Dynamic Adaptive Systems and changing environmental factors makes it difficult to anticipate all the explicit states in which the system will be during its lifetime. As such a DAS needs to be able to tolerate a range of environmental conditions and contexts, but the exact nature of these contexts remains imperfectly understood. For the system properties of our AAL case study, we use two types of properties: \myrelax{}-ed and Invariant. These requirements are obtained by applying a process called  \myrelax{} \cite{test6} on traditional requirements. \myrelax{}  is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems.
 
-In our previous work \cite{test7}, we have find a link between \myrelax{} and \sysml{}/\kaos{}\cite{test8} which is a goal oriented approach, based on \kaos{}, which extends the \sysml{} meta-model with goal concepts. In our view, these two approaches are complementary for each other and \myrelax{} can benefit from the ContributionNature and ContributionType concepts of \sysml{}/\kaos{}.  This paper enriches our work in integrating the formal aspects.
+In our previous work \cite{test7}, we have find a link between \myrelax{} and \sysml{}/\kaos{} \cite{test8} which is a goal oriented approach, based on \kaos{}, which extends the \sysml{} meta-model with goal concepts. In our view, these two approaches are complementary for each other and \myrelax{} can benefit from the ContributionNature and ContributionType concepts of \sysml{}/\kaos{}.  This paper enriches our work in integrating the formal aspects.
 
 %Typical  textual  requirements  prescribe behavior  using  a  modal  verb  such  as  SHALL  that defines  functionality  that  a  software  system  must always provide. For self adaptive systems however, environmental  uncertainty  may  mean  that  it  is  not always  possible  to  achieve  all  of  those  SHALL statements; or behavioral uncertainty may allow for trade-offs between SHALL statements to \myrelax{} non-critical  statements  in  favor  of  other,  more  critical ones.  Therefore  \myrelax{}  identifies  two  types  of requirements:  one  that  can  be  \myrelax{}ed  in  favor  of other ones called variant or \myrelax{}-ed and other that should never change called invariant.
 
-\paragraph*{Paper structure.} This paper is organized as follows: Section~\ref{sec:r_work} presents other approaches defined for the verification of AAL models, Section~\ref{sec:tools} introduces the OMEGA UML/SysML Profile and the IFx Toolbox that are used for modelling and properties verification, Section~\ref{sec:aal_model} describes the case study: its specification, system architecture and behavior, Section~\ref{sec:properties} presents the properties, the AAL system has to satisfy, while Section~\ref{sec:results} contains the verification and simulation results, Section~\ref{sec:conclusion} concludes the paper and highlights the future work.
+\paragraph*{Paper structure.} This paper is organized as follows: Section~\ref{sec:r_work} presents other approaches defined for the verification of AAL models, Section~\ref{sec:tools} introduces the OMEGA \UML{}/\SysML{} Profile and the IFx Toolbox that are used for modelling and properties verification, Section~\ref{sec:aal_model} describes the case study: its specification, system architecture and behavior, Section~\ref{sec:properties} presents the properties, the AAL system has to satisfy, while Section~\ref{sec:results} contains the verification and simulation results, Section~\ref{sec:conclusion} concludes the paper and highlights the future work.
 
 \section{Related work}
 \label{sec:r_work}
 
-Similar work can be found in literature. \cite{test9} introduces a profile named TURTLE (Timed UML and RT-LOTOS Environment). With its formal semantics given in RT-LOTOS and its toolkit, TURTLE enables a priori detection of design errors through a combination of simulation and verification/validation techniques. By “simulation” the authors mean a partial exploration of the system state space. It is often used for debugging purposes and to quickly increase confidence in a design. For finite state space systems, exhaustive analysis is also possible. Verification relies 
+Similar work can be found in literature. \cite{test9} introduces a profile named TURTLE (Timed \UML{} and RT-LOTOS Environment). With its formal semantics given in RT-LOTOS and its toolkit, TURTLE enables a priori detection of design errors through a combination of simulation and verification/validation techniques. By “simulation” the authors mean a partial exploration of the system state space. It is often used for debugging purposes and to quickly increase confidence in a design. For finite state space systems, exhaustive analysis is also possible. Verification relies 
 on the exploration of the whole system state space in order to prove absence of deadlocks for instance and other general properties that should be satisfied by any system. Validation also relies on exhaustive analysis to demonstrate that a model meets specific requirements, or exhibits a certain behavior  such as the validation of a design against the requirements.
 
 \cite{test10} introduces Uppaal which is a tool box for validation (via graphical simulation) and verification (via automatic model-checking) of real-time systems. It consists of two main parts: a graphical user interface and a model-checker engine. The idea is to model a system using timed automata, simulate it and then verify properties on it. Timed automata are finite state machines with time (clocks). A system consists of a network of processes that are composed of locations. Transitions between these locations define how the system behaves. The simulation step consists of running the system interactively to check that it works as intended. Then the verifier check the reachability properties, i.e., if a certain state is reachable or not. 
@@ -88,7 +95,7 @@ on the exploration of the whole system state space in order to prove absence of 
 \noindent In this section, we introduce the OMEGA2 Profile which we used for modeling the AAL system and its properties and the IFx toolset used for the verification and simulation of these properties. 
 %\ldots
 
-\subsection{The OMEGA \uml{}/\sysml{} Profile}
+\subsection{The OMEGA UML/SysML Profile}
 
 OMEGA is an executable \uml{}/\sysml{} profile dedicated to the formal specification and validation of critical real-time systems. It is based on a subset of \uml{} 2.2/\sysml{} 1.1 containing the main constructs for modelling system structure and class/block behavior and for which provides a clear and coherent operational and timed semantics.
 
@@ -334,44 +341,43 @@ The \myrelax{} requirement is then verified by a test case and then the test cas
 \url{http://www-2.cs.cmu.edu/~svc/}
 
 \bibitem{test2}
-Dragomir, I. A Case Study in Formal System Engineering with SysML, 17th International Conference on Engineering of Complex Computer Systems (ICECCS), 2012,Pages: 189 - 198.  
+\final{Dragomir, I. A Case Study in Formal System Engineering with SysML, 17th International Conference on Engineering of Complex Computer Systems (ICECCS), 2012,Pages: 189 - 198.}
 
-\bibitem{test3} Iulian Ober and Iulia Dragomir. OMEGA2: A new version of the profile and the tools, 15th IEEE International Conference on Engineering of Complex Computer Systems, DOI 10.1109/ICECCS.2010.59.
+\bibitem{test3} \final{Iulian Ober and Iulia Dragomir. OMEGA2: A new version of the profile and the tools, 15th IEEE International Conference on Engineering of Complex Computer Systems, DOI 10.1109/ICECCS.2010.59.}
 
-\bibitem{test4}  Iulian Ober, Susanne Graf and Ileana Ober. Validating timed \uml{} models by simulation and verification, International Journal on Software Tools for Technology (2006) 8(2): 128–145 DOI 10.1007/s10009-005-0205-x
+\bibitem{test4}  \final{Iulian Ober, Susanne Graf and Ileana Ober. Validating timed \uml{} models by simulation and verification, International Journal on Software Tools for Technology (2006) 8(2): 128–145 DOI 10.1007/s10009-005-0205-x.}
 
 \bibitem{test5}E. M. Clarke, O. Grumberg, and D. A. Peled, Model Checking. MIT Press, 1999.
 
-\bibitem{test6} Jon Whittle, Pete Sawyer, Nelly Bencomo, Betty H.C. Cheng, and Jean-Michel Bruel. \myrelax{} : Incorporating Uncertainty into the Speciﬁcation of Self-Adaptive systems, Proceedings of the 17th IEEE International RE Conference, Pages: 79-88
+\bibitem{test6} \final{Jon Whittle, Pete Sawyer, Nelly Bencomo, Betty H.C. Cheng, and Jean-Michel Bruel. \myrelax{} : Incorporating Uncertainty into the Speciﬁcation of Self-Adaptive systems, Proceedings of the 17th IEEE International RE Conference, Pages: 79-88.}
 
-\bibitem{test7} Manzoor Ahmad, Jean Michel Bruel, R\'egine Laleau and Christophe Gnaho. Using RELAX, SysML and KAOS for Ambient Systems Requirements Modeling, Procedia Computer Science Volume 10, 2012, Pages 474–481.
+\bibitem{test7} \final{Manzoor Ahmad, Jean Michel Bruel, R\'egine Laleau and Christophe Gnaho. Using RELAX, SysML and KAOS for Ambient Systems Requirements Modeling, Procedia Computer Science Volume 10, 2012, Pages 474–481.}
 
 \bibitem{test8} Christophe Gnaho, Farida Semmak. Une extension \sysml{} pour l'ing\'enierie des exigences non-fonctionnelles orient\'ee but. Revue Ing\'enierie des Syst\`emes d'Information, Vol 16/1, 23 pages, 2011.
 
-\bibitem{test9} Ludovic Apvrille, Pierre de Saqui-Sannes, Ferhat Khendek. TURTLE-P: a UML profile for the formal validation of critical and distributed systems, Software and System Modeling 5(4): 449-466 (2006).
+\bibitem{test9} Ludovic Apvrille, Pierre de Saqui-Sannes, Ferhat Khendek. TURTLE-P: a \UML{} profile for the formal validation of critical and distributed systems, Software and System Modeling 5(4): 449-466 (2006).
 
 \bibitem{test10} \url{http://www.it.uu.se/research/group/darts}
 /uppaal/
 %small_tutorial.pdf
 
 \bibitem{test11}
- I.~Ober and I.~Dragomir, ``{Unambiguous UML Composite Structures: The OMEGA2 Experience},'' in   \emph{SOFSEM 2011: Theory and Practice of Computer Science}, ser. Lecture Notes in Computer Science, I.~Cerna, T.~Gyimothy, J.~Hromkovic, K.~Jefferey, R.~Kralovic, M.~Vukolic, and S.~Wolf, Eds.\hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin / Heidelberg, 2011, vol. 6543, pp. 418--430.
+\final{I.~Ober and I.~Dragomir, ``{Unambiguous \UML{} Composite Structures: The OMEGA2 Experience},'' in   \emph{SOFSEM 2011: Theory and Practice of Computer Science}, ser. Lecture Notes in Computer Science, I.~Cerna, T.~Gyimothy, J.~Hromkovic, K.~Jefferey, R.~Kralovic, M.~Vukolic, and S.~Wolf, Eds.\hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin / Heidelberg, 2011, vol. 6543, pp. 418--430.}
 
 
 \bibitem{test12}
 S.~Bornot and J.~Sifakis, ``{An algebraic framework for urgency},'' \emph{Information and Computation}, vol. 163, 2000.
 
 \bibitem{test13}
-M.~Bozga, S.~Graf, I.~Ober, I.~Ober, and J.~Sifakis, ``{The IF Toolset},'' in   \emph{Formal Methods for the Design of Real-Time Systems}, ser. Lecture Notes in Computer Science, M.~Bernardo and F.~Corradini, Eds.\hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin / Heidelberg, 2004, vol. 3185, pp. 131--132.
+\final{M.~Bozga, S.~Graf, I.~Ober, I.~Ober, and J.~Sifakis, ``{The IF Toolset},'' in   \emph{Formal Methods for the Design of Real-Time Systems}, ser. Lecture Notes in Computer Science, M.~Bernardo and F.~Corradini, Eds.\hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin / Heidelberg, 2004, vol. 3185, pp. 131--132.}
 
 \bibitem{test14} OMEGA-IFx for \uml{}/\sysml{} v2.0 Profile and Toolset, User Manual Document version 1.1
 
-\bibitem{test15} \url{https://wwwsecu.irit.fr/}
-FILEX/get?k=n21pV3UgsOtvJC4PSvx
+\bibitem{test15} \url{https://wwwsecu.irit.fr/FILEX/get?k=n21pV3UgsOtvJC4PSvx}
 
 \bibitem{test16}  IBM, “Rational Rhapsody v7.5. reference manuals.” Available via \url{http://www.ibm.com/developerworks/rational/}.
 
-\bibitem{test17} Jean-Michel Bruel, Nicolas Belloir and Manzoor Ahmad. SPAS: un proﬁl \sysml{} pour les syst`emes auto-adaptatifs, In 15`eme Colloque National de la Recherche en IUT (CN-RIUT), Lille, June 8th to June 9th, 2009.
+\bibitem{test17} \final{Jean-Michel Bruel, Nicolas Belloir and Manzoor Ahmad. SPAS: un proﬁl \sysml{} pour les systèmes auto-adaptatifs, In 15ème Colloque National de la Recherche en IUT (CNRIUT), Lille, June 8th to June 9th, 2009.}
 
 
 
