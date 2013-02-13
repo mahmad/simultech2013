@@ -1,0 +1,130 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{calc}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{pslatex}
+\usepackage{apalike}
+\usepackage{SciTePress}
+\usepackage[small]{caption}
+
+\subfigtopskip=0pt
+\subfigcapskip=0pt
+\subfigbottomskip=0pt
+
+\begin{document}
+
+\title{Early Analysis of Ambient Systems SysML Properties using OMEGA2-IFx}
+
+\author{\authorname{Manzoor Ahmad\sup{1}, Iulia Dragomir\sup{1}, Jean-Michel Bruel\sup{1}, Iulian Ober\sup{1} and Nicolas Belloir\sup{2}}
+\affiliation{\sup{1}IRIT, Universit\'e de Toulouse, France}
+\affiliation{\sup{2}LIUPPA, Universit\'e de Pau et des Pays de l'Adour, France}
+\email{\{ahmad,dragomir,bruel,iulian.ober\}@irit.fr, belloir@univ-pau.fr}
+}
+
+\keywords{Requirements, Formal Verification, Observers, SysML, RELAX, KAOS, Goals}
+
+\abstract{Formal methods provide tools to verify the consistency and correctness of a specification with respect to the desired properties of the system. 
+This verification is important as the development of an AAL (Ambient Assisted Living) system involves different technologies (medical services, surveillance cameras, intelligent devices, etc.) requiring a strong consistency checking between models. 
+We illustrate in this paper how we prove some of the properties of the system before the development even starts. 
+To model the AAL system, we use the SysML language. In terms of tools, we used Rational Rhapsody in combination 
+with the OMEGA2 profile which is an executable UML/SysML profile used for the formal specification and validation of critical real-time systems. 
+This profile is supported by the IFx toolset which provides mechanisms for the model simulation and properties verification of the AAL system.
+}
+
+\onecolumn \maketitle \normalsize \vfill
+
+\section{\uppercase{Introduction}}
+\label{sec:introduction}
+
+\noindent Blabla
+
+\section{\uppercase{The verification tools}}
+\label{ifx}
+
+\noindent In this section we will introduce \ldots
+
+\subsection{The OMEGA2 UML/SysML Profile}
+
+OMEGA2 is an executable UML/SysML profile dedicated to the formal specification and validation of critical real-time systems. It is based on a subset of UML 2.2/SysML 1.1 containing the main constructs for defining system structure,
+class/block behavior, operational and timed semantics of OMEGA, and observers.
+We detail those concepts in the following.
+
+\subsubsection{System structure}
+
+The system structure can be described using UML class diagrams
+(classes, their relationships, interfaces, basic types, signals) and 
+composite structures (ports, parts, connectors).
+SysML block diagrams can also be used if the concept of blocks (systems or subsystems) is more suited. Those diagrams represent blocks and their relationships, interfaces, basic types, or signals.
+
+\subsubsection{Class/Block behavior}
+
+The behaviour of the basic elements can be expressed using
+state machines or actions.
+For state machines, the profile excludes history states, entry point, exit point and junction. Nevertheless, the profile defines a concrete syntax for UML 2.2 actions. 
+This syntax is used for example to define operation bodies and transition effects in state machines. The textual action language is compatible with the UML 2.2 action metamodel and implements its main elements: object creation and destruction, operation calls, expression evaluation, variable assignment, signal output, return action as well as control flow structuring statements (conditionals and loops, which in UML are part of the activity meta model).
+
+\subsubsection{Operational and timed semantics of OMEGA}
+
+The operational semantics of OMEGA relies on an asynchronous timed execution model. Each class/block is represented by a timed input-output automaton, potentially executing in parallel with other blocks and communicating via asynchronous operation calls and signals. 
+
+The OMEGA2 profile can model timed behavior, where the model time base can either be discrete or continuous and it is specified by the user at verification. The time model is controlled by primitives from automata with urgency: clocks, time guards and transition urgency annotations. A clock is a predefined type in OMEGA given by a class/block named \textit{Timer}. The operations that can be executed on a clock are set for setting a value for the timer, reset to restore the value to 0 and timeout to verify that a certain delay has passed. The timeout operation usually represents a guard condition on transitions. With respect to time progress, transitions can also define a particular semantics based on their stereotype: eager defines that time progress is disabled in a state (i.e., the action on the transition is executed instantaneously), delayable means that the time progress is enabled but it is bounded by a limit and lazy specifies that time progress is enabled and unbounded (i.e. time can progress to infinity). Based on these notions, one can also model synchronous communication for an OMEGA model.
+
+\subsubsection{Observers}
+
+For specifying and verifying dynamic properties of models, OMEGA uses the notion of \textit{observers}.
+Observers are special classes/blocks monitoring run-time state and events. Observers are defined by classes/blocks stereotyped with \texttt{<<observer>>}. They may have local memory (attributes) and a state machine describes their behavior. States are classified as \texttt{<<success>>} and \texttt{<<error>>} states to express the (non)satisfaction of safety properties. The main issue in defining observers is the choice of events which trigger their transitions, and which must include specific UML/SysML event types. The IFx version of OMEGA uses the following event types:
+\begin{itemize}
+\item Events related to signal exchange: \texttt{send}, \texttt{receivesignal}, \texttt{acceptsignal}.
+\item Events related to operation calls: \texttt{invoke}, \texttt{receive} (reception of call), \texttt{accept} (start of actual processing of call -- may be different from \texttt{receive}), \texttt{invokereturn} (sending of a 
+return 	value), \texttt{receivereturn} (reception of the return value), \texttt{acceptreturn} (actual consumption	of the return value).
+\item Informal events explicitly specified by the modeler using the informal action.
+The trigger of an observer transition is a \texttt{match} clause specifying the type of event (e.g., \texttt{receive}), some related information (e.g., the operation name) and observer variables that may receive related information (e.g., variables receiving the values of operation call parameters). Besides events, an observer may access any part of the state of the UML model: object attributes and state, signal queues. 
+\end{itemize}
+
+\subsubsection{Using OMEGA2 Profile}
+
+To create OMEGA2 SysML models, we use Rational Rhapsody Developer v7.5.2. OMEGA2 models use a profile and a predefined library provided with the tool (\texttt{OMEGA2.sbs} and \texttt{OMEGA2Predefined.sbs}). 
+Any other UML2.2 or SysML1.1 editor supporting profiling and exporting in the XMI2.0 standard compatible with Eclipse ecore can be used for OMEGA models. To use them in Rhapsody, select "File/Add to model…" and open files OMEGA2.sbs and OMEGA2Predefined.sbs. 
+In OMEGA2, ports are unidirectional, meaning that we can only send messages through the port or receive messages through the port. If a component can send and receive messages, we have to model this with at least two ports. Every port has to define a contract. A contract is an interface containing operations definition (without the body) and signals reception for which the block and/or the port knows how to react. If we have two or more interfaces defining the needed requests, we need to define a new interface that inherits from the others. This interface has to be stereotyped with  interfaceGroup and it defines the type of the port. A port’s usual behavior is to forward messages according to its direction. A required port may be modeled either using the stereotype reversed or, in Rhapsody, using the reversed checkbox in the port's properties (which adds a Rhapsody stereotype equivalent to reversed). In this case the requests are transferred to the environment. If the port is owned by a block and has to forward messages to the block, the port must be set declared as  provided port (i.e. in Rhapsody a provided port is a behavior port). Ports owned by parts with behavior have always to be typed as behavior ports even if they are provided or required, contrary to ports owned by parts of composite structure type. Ports are connected with other ports and/or blocks by connectors.
+
+\subsection{IFx Toolset}
+
+\noindent OMEGA2 models can be simulated and properties can be verified using the IFx2 toolset. The following terminology is used: 
+
+\begin{description}
+\item[Verification:] It designates  the  automatic  process  of  verifying  whether  an  OMEGA2  UML/SysML model  satisfies  (some  of)  the  properties  (i.e. observers)  defined  on  it.  The  verification  method employed in IFx is based on systematic exploration of the system state space ( i.e., enumerative model checking). 
+\item[Simulation:] It designates  the  interactive  execution  of  an  OMEGA2  UML/SysML  model.  The execution  can    be  performed  step-by-step,  random,  or  guided  by  a  simulation  scenario  (for example an error scenario generated during a verification activity). 
+\end{description}
+
+The IFx toolset relies on a translation of UML/SysML models towards a simple specification language based on an asynchronous composition of extended timed automata (IF), and on the use of simulation and verification tools available for IF. The translation takes an input model in XMI 2.0 format; it has been designed to work in conjunction with IBM Rhapsody (version 7.4 or later) but functions correctly with other XMI-compliant tools. The overall workflow  of IFx Toolset is shown in Fig.~\ref{fig:flow}.
+
+
+%\begin{figure*}[!h]
+\begin{figure}[!h]
+  \vspace{8cm}~
+  \centering
+ %  {\epsfig{file = SciTePress.eps, width = 5.5cm}}
+  \caption{IFx Workflow}
+  \label{fig:flow}
+ \end{figure}
+
+%\vfill
+\bibliographystyle{apalike}
+{\small
+\bibliography{example}}
+
+%\section*{\uppercase{Appendix}}
+%
+%\noindent If any, the appendix should appear directly after the
+%references without numbering, and not on a new page. To do so please use the %following command:
+%\textit{$\backslash$section*\{APPENDIX\}}
+
+\vfill
+\end{document}
+
