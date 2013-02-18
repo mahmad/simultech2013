@@ -32,11 +32,12 @@
 \def\SysML{\textsc{SysML}}
 \def\uml{\textsc{Uml}}
 \def\kaos{\textsc{Kaos}}
+\def\uppaal{\textsc{Uppaal}}
 
 %================================================================
 % remove for draft/final version
-%\newcommand{\final}[1]{\textbf{xxx removed for blind review purpose xxx}}
-\newcommand{\final}[1]{#1}
+\newcommand{\final}[1]{\textbf{xxx removed for blind review purpose xxx}}
+%\newcommand{\final}[1]{#1}
 %================================================================
 
 \begin{document}
@@ -79,16 +80,16 @@ we have concluded that these two approaches are complementary with each other an
 \section{Related work}
 \label{sec:r_work}
 
-The specification and verification of NFRs in the early stages of the AAL development cycle is a crucial issue \cite{test9}. These systems require clear and precise specifications in order to describe the system behavior and its environment. The formal specification of the system behavior supported by mathematical analysis and reasoning techniques improve their development process and enable the verification of these systems. 
+\noindent The specification and verification of NFRs in the early stages of the AAL development cycle is a crucial issue \cite{test9}. These systems require clear and precise specifications in order to describe the system behavior and its environment. The formal specification of the system behavior supported by mathematical analysis and reasoning techniques improve their development process and enable the verification of these systems. 
 
 In \cite{test10}, the authors present a verification approach based on MEDISTAM-RT which is a methodological framework for the design and analysis of real-time systems and timed traces to check the fulfillment of non-functional requirements. They focus on  safety and timeliness properties, to assure the correct functioning of AAL systems and to show the applicability of this methodology in the context of this kind of systems. 
 
-In \cite{test11}, the authors introduces a profile named TURTLE (Timed \UML{} and RT-LOTOS Environment). With its formal semantics given in RT-LOTOS and its toolkit, TURTLE enables a priori detection of design errors through a combination of simulation and verification/validation techniques. By “simulation” the authors mean a partial exploration of the system state space. It is often used for debugging purposes and to quickly increase confidence in a design. For finite state space systems, exhaustive analysis is also possible. Verification relies 
+In \cite{test11}, the authors introduce a profile named TURTLE (Timed \UML{} and RT-LOTOS Environment). With its formal semantics given in RT-LOTOS and its toolkit, TURTLE enables a priori detection of design errors through a combination of simulation and verification/validation techniques. By “simulation” the authors mean a partial exploration of the system state space. It is often used for debugging purposes and to quickly increase confidence in a design. For finite state space systems, exhaustive analysis is also possible. Verification relies 
 on the exploration of the whole system state space in order to prove absence of deadlocks for instance and other general properties that should be satisfied by any system.
 
 % Validation also relies on exhaustive analysis to demonstrate that a model meets specific requirements, or exhibits a certain behavior  such as the validation of a design against the requirements.
 
-\cite{test12} introduces Uppaal which is a tool box for validation (via graphical simulation) and verification (via automatic model-checking) of real-time systems. It consists of two main parts: a graphical user interface and a model-checker engine. The idea is to model a system using timed automata, simulate it and then verify properties on it. Timed automata are finite state machines with time (clocks). A system consists of a network of processes that are composed of locations. Transitions between these locations define how the system behaves. The simulation step consists of running the system interactively to check that it works as intended. Then the verifier check the reachability properties, i.e., if a certain state is reachable or not. 
+In \cite{test12}, the authors introduce \uppaal{} which is a tool box for validation (via graphical simulation) and verification (via automatic model-checking) of real-time systems. It consists of two main parts: a graphical user interface and a model-checker engine. The idea is to model a system using timed automata, simulate it and then verify properties on it. Timed automata are finite state machines with time (clocks). A system consists of a network of processes that are composed of locations. Transitions between these locations define how the system behaves. The simulation step consists of running the system interactively to check that it works as intended. Then the verifier check the reachability properties, i.e., if a certain state is reachable or not. 
 
 
 
@@ -166,16 +167,16 @@ The compiler verifies the set of well-formedness rules imposed by the profile an
 
 \section{\uppercase{Modeling the AAL system with OMEGA2 Profile}}
 \label{sec:aal_model}
-In this section, we explore the AAL system specification, the system architecture showing its structural and behavioral diagrams i.e. its block definition diagram, internal block diagrams and state machine diagrams.
+\noindent In this section, we explore the AAL system specification, the system architecture showing its structural and behavioral diagrams i.e. its block definition diagram, internal block diagrams and state machine diagrams.
 
 \subsection{System Specification}
-Here is an excerpt of the AAL case study\cite{test6}: \textit{Mary is a widow. She is 65 years old, overweight and has high blood pressure and cholesterol levels. Following her doctor’s instructions, she is considering to loose weight. The doctor has recommended a hypo caloric diet with low levels of salt. She lives by herself in an AAL house}.
-First, we start by taking into account the structural part of the AAL system. We consider those parts that are concerned with the daily calories intake of the Patient in the AAL house. The AAL system is composed of Fridge and Patient. We would like to model these parts and the interaction that takes place between them. The Fridge partially contributes to the minimum liquid intake of the Patient; it also looks at the calories consumption of the Patient as the Patient needs not to exceed it after a certain threshold. 
+Here is an excerpt of the AAL case study \cite{test6}: \textit{Mary is a widow. She is 65 years old, overweight and has high blood pressure and cholesterol levels. Following her doctor’s instructions, she is considering to loose weight. The doctor has recommended a hypo caloric diet with low levels of salt. She lives by herself in an AAL house}.
+First, we start by taking into account the structural part of the AAL system. We consider those parts that are concerned with the daily calories intake of the \texttt{Patient} in the AAL house. The AAL system is composed of \texttt{Fridge} and \texttt{Patient}. We would like to model these parts and the interaction that takes place between them. The \texttt{Fridge} partially contributes to the minimum liquid intake of the \texttt{Patient}; it also looks at the calories consumption of the \texttt{Patient} as he/she does not need to exceed it after a certain threshold. 
 
 \subsection{System Architecture}
-Fig.~\ref{fig:mainibd} shows the Main internal block diagram. The important parts of the AAL system are Patient and Fridge. A Fridge in turn is composed of Food, Display, Alarm and Controller blocks. The block Food contains information about the food items in the Fridge, the calories contained by each item, the total number of calories the patient has accumulated and the calories threshold that should not be surpassed. The Fridge Display is used to show the amount of calories consumed by the Patient. The Alarm is activated in case the Patient's calories level surpasses a certain threshold. The Controller transfer the information from the Patient to the concerning elements and back to the environment. 
+Fig.~\ref{fig:mainibd} shows the main internal block diagram. The important parts of the AAL system are \texttt{Patient} and \texttt{Fridge}. A \texttt{Fridge} in turn is composed of \texttt{Food}, \texttt{Display}, \texttt{Alarm} and \texttt{Controller} blocks. The \texttt{Food} block contains information about the food items in the \texttt{Fridge}, the calories contained by each item, the total number of calories the \texttt{Patient} has accumulated and the calories threshold that should not be surpassed. The fridge \texttt{Display} is used to show the amount of calories consumed by the \texttt{Patient}. The \texttt{Alarm} is activated in case the \texttt{Patient}'s calories level surpasses a certain threshold. The \texttt{Controller} transfer the information from the \texttt{Patient} to the concerning elements and back to the environment. 
 
-The communication between different blocks takes place through ports. A  port  bears  a  type.  In  OMEGA2,  the  type  of  a  port  must  be  an  Interface. The type specifies the set of requests (operation calls and/or signals) that  are transferred between parts (components) by means of ports and connectors. In Fig.~\ref{fig:mainibd}, the Patient block has a standard port named pToFridge. This port has a contract named Patient2Fridge and is acting as a provided interface of the Patient block. The Interface Patient2Fridge defines an operation \textit{eat(int item, int quantity)}. This interface is then used as a type of pToFridge port. At the same time the Patient block has a required interface named pFromPatient. For the full system architecture, the reader is referred to \cite{test17}.
+The communication between different blocks takes place through ports. A  port  bears  a  type.  In  OMEGA2,  the  type  of  a  port  must  be  an  Interface. The type specifies the set of requests (operation calls and/or signals) that  are transferred between parts (components) by means of ports and connectors. In Fig.~\ref{fig:mainibd}, the \texttt{Patient} block has a standard port named \texttt{pToFridge}. This port has a contract named \texttt{Patient2Fridge} and is acting as a provided interface of the \texttt{Patient} block. The interface \texttt{Patient2Fridge} defines an operation \texttt{eat(int item, int quantity)}. This interface is then used as a type of \texttt{pToFridge} port. At the same time the \texttt{Patient} block has a required interface named \texttt{pFromPatient}. For the full system architecture, the reader is referred to \cite{test17}.
 
 Rational Rhapsody Developer v7.5.2\footnote{http://www.ibm.com/developerworks/rational/} is used to create OMEGA2 models. OMEGA2 models use a profile and a predefined library provided with the tool (OMEGA2.sbs and OMEGA2Predefined.sbs). Any other \uml{}2.2 or \sysml{}1.1 editor supporting profiling and exporting in the XMI2.0 standard compatible with Eclipse ecore can be used for OMEGA2 models.
 
@@ -186,8 +187,8 @@ Rational Rhapsody Developer v7.5.2\footnote{http://www.ibm.com/developerworks/ra
   \label{fig:mainibd}
  \end{figure}
  
-%The important part of the AAL system is the intelligent Fridge. 
-The Fridge interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the internal block diagram for the Fridge block. Each of the four blocks behaviors is modeled in a separate state machine diagram.
+%The important part of the AAL system is the intelligent \texttt{Fridge}. 
+The \texttt{Fridge} interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the internal block diagram for the \texttt{Fridge} block. Each of the four blocks behaviors is modeled in a separate state machine diagram.
 
 \begin{figure}[!h]
   \centering
@@ -196,7 +197,7 @@ The Fridge interacts with the AAL system. Fig.~\ref{fig:fridgeibd} shows the int
   \label{fig:fridgeibd}
  \end{figure}
  
-Fig.~\ref{fig:patientstm} shows the state machine diagram for the Patient block. Here the exchange of information between Patient and Fridge takes place. We identify the number and quantity of each item present in the Fridge. If a certain product still present in the Fridge is chosen by the Patient then the information is  communicated with the Fridge.  Otherwise the Fridge is empty and the Patient will wait to be refilled. Also, if the Alarm of the Fridge is raised due to  high intake of calories, the Patient stops eating and waits for the system to be unblocked.
+Fig.~\ref{fig:patientstm} shows the state machine diagram for the \texttt{Patient} block. Here the exchange of information between \texttt{Patient} and \texttt{Fridge} takes place. We identify the number and quantity of each item present in the \texttt{Fridge}. If a certain product still present in the \texttt{Fridge} is chosen by the \texttt{Patient} then the information is  communicated with the \texttt{Fridge}.  Otherwise the \texttt{Fridge} is empty and the \texttt{Patient} will wait to be refilled. Also, if the \texttt{Alarm} of the \texttt{Fridge} is raised due to  high intake of calories, the \texttt{Patient} stops eating and waits for the system to be unblocked.
  
 \begin{figure}[!h]
   \centering
@@ -205,7 +206,7 @@ Fig.~\ref{fig:patientstm} shows the state machine diagram for the Patient block.
   \label{fig:patientstm}
  \end{figure}
  
-The Food block models the knowledge of the Fridge about what it contains. We define the number of items and the amount of calories associated with each item present in the Fridge. We then calculate the total number of calories accumulated by the Patient. If the total number of calories is greater or equal to the maximum calories allowed for the Patient, then a message is sent and the alarm is raised or if the total number of calories is greater than the maximum calories allowed minus 500, then the Patient is warned with a message that the calories level is approaching the maximum amount of calories allowed. 
+The \texttt{Food} block models the knowledge of the \texttt{Fridge} about what it contains. We define the number of items and the amount of calories associated with each item present in the \texttt{Fridge}. We then calculate the total number of calories accumulated by the \texttt{Patient}. If the total number of calories is greater or equal to the maximum calories allowed for the \texttt{Patient}, then a message is sent and the alarm is raised or if the total number of calories is greater than the maximum calories allowed minus 500, then the \texttt{Patient} is warned with a message that the calories level is approaching the maximum amount of calories allowed. 
 
 %Fig.~\ref{fig:foodstm} shows the state machine diagram for the Food block.
 
@@ -218,11 +219,12 @@ The Food block models the knowledge of the Fridge about what it contains. We def
 
 \section{\uppercase{Properties Verification of AAL system}}
 \label{sec:properties}
-The properties of AAL system that we modeled and verified are obtained after \myrelax{} process is applied on its traditional requirements. \myrelax{}  is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems. Typical  textual  requirements  prescribe behavior  using  a  modal  verb  such  as  SHALL  that defines  functionality  that  a  software  system  must always provide. For self adaptive systems such as AAL, however, environmental  uncertainty  may  mean  that  it  is  not always  possible  to  achieve  all  of  those  SHALL statements; or behavioral uncertainty may allow for trade-offs between SHALL statements to \myrelax{} non-critical  statements  in  favor  of  other,  more  critical ones.  Therefore,  \myrelax{} identifies two types of requirements: one that can be \myrelax{}-ed in favor of other ones called variant or \myrelax{}-ed and other that should never change called invariant.
+\noindent The properties of AAL system that we modeled and verified are obtained after \myrelax{} process is applied on its traditional requirements. \myrelax{}  is  a  requirement  engineering language for self-adaptive systems that incorporates uncertainty into the specification of these systems. Typical  textual  requirements  prescribe behavior  using  a  modal  verb  such  as  SHALL  that defines  functionality  that  a  software  system  must always provide. For self adaptive systems such as AAL, however, environmental  uncertainty  may  mean  that  it  is  not always  possible  to  achieve  all  of  those  SHALL statements; or behavioral uncertainty may allow for trade-offs between SHALL statements to \myrelax{} non-critical  statements  in  favor  of  other,  more  critical ones.  Therefore,  \myrelax{} identifies two types of requirements: one that can be \myrelax{}-ed in favor of other ones called variant or \myrelax{}-ed and other that should never change called invariant.
 Below are the properties to be verified. 
 
 \subsection{Traditional/\myrelax{}-ed Requirement}
 
+\noindent We have studied two \myrelax{}-ed requirements:
 \begin{itemize}
 \item The fridge shall detect and communicate with food packages
 \end{itemize}
@@ -248,15 +250,16 @@ Below are the uncertainty factors associated with the given \myrelax{}-ed requir
   \label{fig:property1stm}
  \end{figure}
  
-The satisfaction of this requirement contributes to the balanced diet of the Patient. We would like to verify this property as it is important for the AAL system to know about as many food items as possible present in the fridge. Fig.~\ref{fig:property1stm} shows the state machine diagram of the Property 1. In this property, we identify the number of items consumed by the Patient and the total number of items in the Fridge. First of all, we verify the identity of the Patient, if the person is identified as the Patient, then we calculate the number of items consumed. We then calculate the number of items left in the Fridge which is equal to the sum of all the items present in the Fridge. Then in the last step, we calculate if ((total number of items - number of items consumed - number of items left) \textgreater -1) and ((total number of items - number of items consumed - number of items left) \textless 1),
-it means that we have reached the \texttt{<<success>>} state by having information about all the items present in the Fridge, i.e. it should be 0 (which means that there is no information loss). Inversely, if it is less than -1 and greater than 1, then it means that we are missing information about some of the items present in the Fridge and the \textit{observer} passes into the \texttt{<<error>>} state.
+The satisfaction of this requirement contributes to the balanced diet of the \texttt{Patient}. We would like to verify this property as it is important for the AAL system to know about as many food items as possible present in the \texttt{Fridge}. Fig.~\ref{fig:property1stm} shows the state machine diagram of the Property 1. In this property, we identify the number of items consumed by the \texttt{Patient} and the total number of items in the \texttt{Fridge}. First of all, we verify the identity of the \texttt{Patient}, if the person is identified as the \texttt{Patient}, then we calculate the number of items consumed. We then calculate the number of items left in the \texttt{Fridge} which is equal to the sum of all the items present in the \texttt{Fridge}. Then in the last step, we calculate if ((total number of items - number of items consumed - number of items left) \textgreater -1) and ((total number of items - number of items consumed - number of items left) \textless 1),
+it means that we have reached the \texttt{<<success>>} state by having information about all the items present in the \texttt{Fridge}, i.e. it should be 0 (which means that there is no information loss). Inversely, if it is less than -1 and greater than 1, then it means that we are missing information about some of the items present in the \texttt{Fridge} and the \textit{observer} passes into the \texttt{<<error>>} state.
 
 % the total number of items minus the number of items consumed minus the number of items left is less than -1 or the total number of items minus the number of items consumed minus the number of items left is greater than 1, 
 
 \subsection{Invariant Requirement}
+\noindent We have taken two examples of invariants:
 
 \begin{itemize}
-\item Property 2 : The Alarm SHALL be raised instantaneously if the total number of calories surpasses the maximum calories allowed for the patient 
+\item Property 2 : The alarm SHALL be raised instantaneously if the total number of calories surpasses the maximum calories allowed for the patient 
 \end{itemize}
 
 \begin{figure}[!h]
@@ -267,12 +270,12 @@ it means that we have reached the \texttt{<<success>>} state by having informati
  \end{figure}
  
   
-This property ensures that the Patient should stop eating when the total number of calories surpasses the maximum calories allowed and that the Alarm should be raised. Fig.~\ref{fig:property3stm} shows the state machine diagram of the property 2. This requirement implies that the Alarm shall be immediately raised as soon as the total number of calories equals or surpasses the maximum calories allowed for the Patient. If it happens then the Patient should stop eating.  
+This property ensures that the \texttt{Patient} should stop eating when the total number of calories surpasses the maximum calories allowed and that the Alarm should be raised. Fig.~\ref{fig:property3stm} shows the state machine diagram of the property 2. This requirement implies that the Alarm shall be immediately raised as soon as the total number of calories equals or surpasses the maximum calories allowed for the \texttt{Patient}. If it happens then the \texttt{Patient} should stop eating.  
 
 \section{Verification Results}
 \label{sec:results}
 %\subsection{Verification Results}
-Until now, we have modeled the AAL system and the properties to be verified on the model. It is now time to verify these properties and in case if there is error during its verification, simulate it to find the error and then correct it in the model. Fig.~\ref{fig:xmi2if} shows the snapshot of the compilation of the AAL model named AAL2. The AAL2 model is first exported into AAL2.xmi and then using the IFx toolset the AAL2.xmi is compiled into AAL2.if.
+\noindent Until now, we have modeled the AAL system and the properties to be verified on the model. It is now time to verify these properties and in case if there is error during its verification, simulate it to find the error and then correct it in the model. Fig.~\ref{fig:xmi2if} shows the snapshot of the compilation of the AAL model named AAL2. The AAL2 model is first exported into \texttt{AAL2.xmi} and then using the IFx toolset the \texttt{AAL2.xmi} is compiled into \texttt{AAL2.if}.
 
 \begin{figure}[!h]
   \centering
@@ -291,31 +294,27 @@ Until now, we have modeled the AAL system and the properties to be verified on t
 %Fig.~\ref{fig:if2exe} shows the snapshot of the compilation of AAL2.if into an executable file i.e. AAL2.x. 
 The AAL2.if is then compiled into an executable file i.e. AAL2.x.
 For the properties verification part, we run the model-checker with the following options:
-
-AAL2.x -dfs -po -me -ce –ln
+\texttt{AAL2.x -dfs -po -me -ce –ln}
 
 While verifying the AAL model, the model-checker has found several error scenarios. 
 %as can be seen in Fig.~\ref{fig:errorstate}.
-
 Any of the error scenario can then be loaded through the interactive simulation interface of the IFx toolset to trace back the error in the model and then correct it. 
-
+%
 %\begin{figure}[!h]
 %  \centering
 %  {\epsfig{file =ErrorState, width = 8cm}}
 % \caption{Model Checker results in Error Scenarios}
 % \label{fig:errorstate}
 %\end{figure}
-
-
-
+%
 \begin{figure}[!h]
   \centering
   {\epsfig{file =InitialSimulationInterface, width = 8cm}}
   \caption{Initial Simulation Interface}
   \label{fig:initialsimulationinterface}
  \end{figure}
-
-In order to  debug  a model, firstly we import it into the simulator as shown in Fig.~\ref{fig:initialsimulationinterface}. We check the states of the \textit{observers} in order to identify which property has not been satisfied. One can observe in Fig.~\ref{fig:errorstatefoodobserver} that Property 2 fails. While checking the state of the entire system for this property, we discover that the error state contained the maximum allowed number of calories for the total number of calories consumed and subsequently eat requests sent by the Patient. This implies that the Alarm function of the intelligent Fridge doesn't function properly. The Alarm function of the Fridge is strictly linked to its Food process and the Alarm is raised only if the total number of consumed calories is strictly superior than the maximum allowed; condition which doesn't satisfy the request that the Alarm is raised as soon as possible. The correction consists in raising the Alarm in case the total number of consumed calories is equal to the maximum allowed threshold. Once this error is corrected the verification succeeds.
+%
+In order to  debug  a model, firstly we import it into the simulator as shown in Fig.~\ref{fig:initialsimulationinterface}. We check the states of the \textit{observers} in order to identify which property has not been satisfied. One can observe in Fig.~\ref{fig:errorstatefoodobserver} that Property 2 fails. While checking the state of the entire system for this property, we discover that the error state contained the maximum allowed number of calories for the total number of calories consumed and subsequently eat requests sent by the \texttt{Patient}. This implies that the Alarm function of the intelligent \texttt{Fridge} doesn't function properly. The Alarm function of the \texttt{Fridge} is strictly linked to its Food process and the Alarm is raised only if the total number of consumed calories is strictly superior than the maximum allowed; condition which doesn't satisfy the request that the Alarm is raised as soon as possible. The correction consists in raising the Alarm in case the total number of consumed calories is equal to the maximum allowed threshold. Once this error is corrected the verification succeeds.
 
 %One can observe in the state machine of the Food block (Fig.~\ref{fig:foodstm}) 
 
@@ -337,11 +336,11 @@ Fig.~\ref{fig:verificationok} shows the result of the model-checker on the corre
 
 \section{{Conclusion}
 \label{sec:conclusion}}
-We have modeled the structural and behavioral parts of an AAL (Ambient Assisted Living) system. The modeling is done using Rational Rhapsody 7.5.2  with OMEGA2 profile which is used for specification and verification of dynamic properties of models through \textit{observers}. For the verification and simulation part, we have used IFx which is a toolset used for the simulation of OMEGA2 models and the verification of properties defined on these models. We have verified two properties of the AAL system using the IFx toolset. At first, the verification results in errors which can then be simulated through the interactive simulation interface of the IFx toolset in order to identify the source of the error and then subsequently correct it in the model, after correcting the error in the model, the verification results in the fulfillment of all the two properties. 
+We have modeled the structural and behavioral parts of an AAL (Ambient Assisted Living) system. The modeling is done using Rational Rhapsody 7.5.2  with OMEGA2 profile which is used for specification and verification of dynamic properties of models through \textit{observers}. For the verification and simulation part, we have used IFx which is a toolset used for the simulation of OMEGA2 models and the verification of properties defined on these models. We have verified two properties of the AAL system using the IFx toolset. At first, the verification results in errors which can then be simulated through the interactive simulation interface of the IFx toolset in order to identify the source of the error and then subsequently correct it in the model, after correcting the error in the model, the verification results in the fulfilment of all the two properties. 
 
-The future work is centered around the use of formal methods in the context of our integrated approach \cite{test18}. This work motivated us to take benefit from the OMEGA2/IFx. In our integrated approach, we are interested in \myrelax{} requirement which we obtain by using the \myrelax{} process. We then refine the \myrelax{} requirement with the ContributionType and ContributionNature of \sysml{}/\kaos{} which is a \sysml{} profile with the goal concepts integrated into it, the reader is referred to \cite{test7} for an insight on our work on \myrelax{} and \sysml{}/\kaos{}. The \myrelax{} requirement is then verified by a test case and then the test case can be refined by observer and then observer is allocated to a state machine diagram. This whole sequence of steps constituite our meta model.
+The future work is centred around the use of formal methods in the context of our integrated approach \cite{test18}. This work motivated us to take benefit from the OMEGA2/IFx. In our integrated approach, we are interested in \myrelax{} requirement which we obtain by using the \myrelax{} process. We then refine the \myrelax{} requirement with the \texttt{ContributionType} and \texttt{ContributionNature} of \sysml{}/\kaos{} which is a \sysml{} profile with the goal concepts integrated into it, the reader is referred to \cite{test7} for an insight on our work on \myrelax{} and \sysml{}/\kaos{}. The \myrelax{} requirement is then verified by a test case that can be refined by observer. The observer is then allocated to a state machine diagram. This whole sequence of steps constitute our process.
 
-%The application of OMEGA2 profile to models is straight forward in that one only needs to add the predefined library provided with the tool (OMEGA2.sbs and OMEGA2Predefined.sbs) into the model. After the creation of OMEGA2 models, export to an xmi file is simply done through the Rational Rhapsody v7.5.2 menu. The choice of the version of Rational Rhapsody is very important as OMEGA2/IFx is not compliant with the new versions of Rational Rhapsody. Another important point to mention is the time the IFx toolset takes for the verification of properties as it depends on the number of items present in the Fridge i.e. in our case study, we have five items in the Fridge and the model checker took considerable amount of time to check all the states of the system. 
+%The application of OMEGA2 profile to models is straight forward in that one only needs to add the predefined library provided with the tool (OMEGA2.sbs and OMEGA2Predefined.sbs) into the model. After the creation of OMEGA2 models, export to an xmi file is simply done through the Rational Rhapsody v7.5.2 menu. The choice of the version of Rational Rhapsody is very important as OMEGA2/IFx is not compliant with the new versions of Rational Rhapsody. Another important point to mention is the time the IFx toolset takes for the verification of properties as it depends on the number of items present in the \texttt{Fridge} i.e. in our case study, we have five items in the \texttt{Fridge} and the model checker took considerable amount of time to check all the states of the system. 
 
 %\bibliographystyle{apalike}
 %{\small
@@ -377,20 +376,20 @@ DOI 10.1109/ICECCS.2010.59.}
 \bibitem{test11} Ludovic Apvrille, Pierre de Saqui-Sannes, Ferhat Khendek. TURTLE-P: a \UML{} profile for the formal validation of critical and distributed systems, Software and System Modeling 5(4): 449-466 (2006).
 
 \bibitem{test12} \url{http://www.it.uu.se/research/group/darts}
-/uppaal/
+%/uppaal/
 %small_tutorial.pdf
 
 \bibitem{test13}
-\final{I.~Ober and I.~Dragomir, ``{Unambiguous \UML{} Composite Structures: The OMEGA2 Experience},'' in \emph{SOFSEM 2011: Theory and Practice of Computer Science}, \hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin/Heidelberg, 2011, vol. 6543, pp. 418--430.}
+\final{I.~Ober and I.~Dragomir, ``{Unambiguous \UML{} Composite Structures: The OMEGA2 Experience},'' in \emph{SOFSEM 2011: Theory and Practice of Computer Science}, \hskip 1em plus 0.5em minus 0.4em\relax Springer, 2011, vol. 6543, pp. 418--430.}
 
 
 \bibitem{test14}
 S.~Bornot and J.~Sifakis, ``{An algebraic framework for urgency},'' \emph{Information and Computation}, vol. 163, 2000.
 
 \bibitem{test15}
-\final{M.~Bozga, S.~Graf, I.~Ober, I.~Ober, and J.~Sifakis, ``{The IF Toolset},'' in \emph{Formal Methods for the Design of Real-Time Systems}, \hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin/Heidelberg, 2004, vol. 3185, pp. 131--132.}
+\final{M.~Bozga, S.~Graf, I.~Ober, I.~Ober, and J.~Sifakis, ``{The IF Toolset},'' in \emph{Formal Methods for the Design of Real-Time Systems}, \hskip 1em plus 0.5em minus 0.4em\relax Springer, 2004, vol. 3185, pp. 131--132.}
 
-\bibitem{test16} OMEGA2-IFx for \uml{}/\sysml{} v2.0 Profile and Toolset, User Manual Document version 1.1
+\bibitem{test16} OMEGA2-IFx for \uml{}/\sysml{} v2.0 Profile and Toolset, User Manual Document v1.1
 
 \bibitem{test17} \final{Manzoor Ahmad, Iulia Dragomir. AAL System Properties Modeling and Verification Using OMEGA2/IFx, Internal Report, Universit\'e de Toulouse.}
 
